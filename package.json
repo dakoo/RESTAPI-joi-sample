@@ -1,0 +1,14 @@
+{
+  "name": "very-simple-hapi-server-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "hapi": "^8.8.0"
+  }
+}
