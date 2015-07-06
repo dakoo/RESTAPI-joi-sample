@@ -16,27 +16,15 @@ hapi.js는 node.js framework 중 가장 hot한 framework이라 할만한다. 더
 ### 폴더 구조
 
 이제 프로젝트를 시작하자. 탐색기에서 임의의 위치에 프로젝트 폴더를 만든다. 아래와 같은 구조로 그 아래에 폴더를 만든다.  
-
-<figure>
-	<img src="/images/very-simple-hapi-server-sample-folders.PNG" alt="">
-</figure>
+project root . server
+             . client .js
+                      .html
+                      .css
+                      .common
 
 ### client 폴더의 기본 파일 만들기
 
 client/html 폴더 아래 index.html 파일을 간단히 만든다. 단순한 테스트를 위한 것이므로 간단한 html 파일이면 된다. 
-
-{% highlight html %}
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-hello, hapi!
-</body>
-</html>
-{% endhighlight %}
 
 ## hapi.js 서버 구성하기 
 
@@ -46,25 +34,7 @@ server 폴더아래에서 Command Prompt로 `npm init`을 실행한다. 이 명�
 
 ### hapi 서버 만들기 
 
-server 폴더아래에 **index.js** 파일을 만들고 아래 내용을 채운다. 
-
-{% highlight javascript %}
-var Hapi = require('hapi');
-var server = new Hapi.Server();
-server.connection({ port: 3000 });
-server.route({
-    method: 'GET',
-    path: '/{filename}',
-    handler: {
-        file: function (request) {
-            return '../client/html/' + request.params.filename;
-        }
-    }
-});
-server.start(function () {
-    console.log('Server running at:', server.info.uri);
-});
-{% endhighlight %}
+server 폴더아래에 **index.js** 파일을 만든다.
 
 ### 테스트
  
