@@ -1,15 +1,13 @@
 var Hapi = require('hapi');
-var server = new Hapi.Server();
-server.connection({ port: 3000 });
-server.route({
-    method: 'GET',
-    path: '/{filename}',
-    handler: {
-        file: function (request) {
-            return '../client/html/' + request.params.filename;
-        }
-    }
-});
-server.start(function () {
-    console.log('Server running at:', server.info.uri);
+var Route = require('./route');
+var config = require('./manifest.json');
+
+var server= new Hapi.Server();
+for(var i in config){
+    server.connection(config[i]);
+}
+
+server.route(Route.webendpoints);
+server.start(function() {
+    console.log('Server started');
 });
