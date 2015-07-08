@@ -1,41 +1,37 @@
----
+ ---
 layout: post
-title: hapi.js를 이용한 초 간단 서버 만들기 예제
-description: hapi.js를 이용한 초 간단 서버 만들기 예제, scaffolding 포함 
-modified: 2015-07-06
+title: hapi.js를 이용한 구조화된 간단 서버 예제
+description: hapi.js를 이용한 구조화된 간단 서버 예제
+modified: 2015-07-08
 ---
 
-hapi.js는 node.js framework 중 가장 hot한 framework이라 할만한다. 더욱 널리 쓰이는 express.js framework이 여러가지 이유로 불안하기에 더욱 hapi.js를 주목해야 할 것이다. hapi.js에 대해서 앞으로 계속 다루게 될 것인데 그 가장 기초가 되는 초 간단 서버와 폴더 구조를 구성해 보자.  
+조금은 구조화된 hapi 서버의 예를 살펴보자. 이 예제를 통해 hapi를 이용해 자신의 서버 프로젝트를 어떻게 구조화 할 수 있는 지 알 게 될 것이다.    
 
-## 사전 준비
+## 준비 
 
-[node.js 개발 환경](http://dakoo.github.io/node.js/how-to-set-up-node.js-dev-env-on-windows/)이 설치되어 있어야 한다. 
+[hapi.js를 이용한 초 간단 서버 만들기 예제 프로젝트](https://github.com/dakoo/very-simple-hapi-server-sample)를 시작 포인트로 삼아 진행하자. 프로젝트를 fork하여 새로운 프로젝트를 만들거나, clone을 한다. clone URL은 아래와 같다.
 
-## 프로젝트 폴더 구조(Scaffolding) 구성하기 
-
-### 폴더 구조
-
-이제 프로젝트를 시작하자. 탐색기에서 임의의 위치에 프로젝트 폴더를 만든다. 아래와 같은 구조로 그 아래에 폴더를 만든다.  
-project root . server
-             . client .js
-                      .html
-                      .css
-                      .common
-
-### client 폴더의 기본 파일 만들기
-
-client/html 폴더 아래 index.html 파일을 간단히 만든다. 단순한 테스트를 위한 것이므로 간단한 html 파일이면 된다. 
-
-## hapi.js 서버 구성하기 
-
-### hapi 설치 및 구성하기
-
-server 폴더아래에서 Command Prompt로 `npm init`을 실행한다. 이 명령어는 server 폴더에 package.json을 만들며, 기본적인 설정을 한다.  그리고 `npm install –-save-dev hapi`명령을 실행하여 hapi를 설치한다. 
-
-### hapi 서버 만들기 
-
-server 폴더아래에 **index.js** 파일을 만든다.
-
-### 테스트
+>https://github.com/dakoo/very-simple-hapi-server-sample.git
  
-Command Prompt를 열어 server 폴더에서 `node .`로 서버를 돌리고 브라우저에서 *http://localhost:3000/index.html*로 접근해서 hello, hapi!가 보이는지 확인한다. 
+## 서버 코드
+
+### 서버 설정 저장하는 manifest.json
+
+server 폴더에 서버의 설정을 저장하는 **manifest.json** 파일을 작성한다. port는 3000번이고 label은 "web-ui"로 설정한다. port가 하나만 사용하므로 labels는 이 예제에서는 사용하지 않을 것이다.  
+
+### 경로와 handler간 routing을 담당하는 route.js
+
+route.js에서는 입력 경로와 handler들과 맵핑을 담당한다. 코드보다는 설정파일처럼 보이는 것이 더 직관적이다.  
+
+### handler를 위한 handlers.js
+
+클라이언트로부터의 request를 처리하는 handler들을 등록해 둔다. 여기서는 파일을 읽어 응답을 주는 단순한 handler만 있다. 
+
+### 서버 구동을 담당하는 index.js
+
+서버 설정과 routing 설정을 읽어 hapi 서버 object에 등록한 후 서버를 구동한다.   
+
+## 테스트
+
+server 폴더에서 `node .` 명령을 통해 서버를 구동하고 크롬 브라우저에서 *http://localhost:3000/* 주소와 *http://localhost:3000/index.html* 주소로 접근해 본다. routing 설정으로 인해 두 주소 모두 client 폴더의 index.html 파일이 읽힌다. 
+
