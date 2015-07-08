@@ -12,3 +12,10 @@ exports.get = {
         }
     }
 };
+exports.api = {
+    handler: {
+        file: function (request) {
+            return '../client/html/' + 'api.html';
+        }
+    }
+};

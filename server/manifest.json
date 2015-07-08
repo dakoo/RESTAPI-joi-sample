@@ -1,6 +1,10 @@
 {
-  "server": {
+  "static": {
     "port": "3000",
     "labels": ["web-ui"]
+  },
+  "rest": {
+    "port": "3001",
+    "labels": ["api"]
   }
 }
