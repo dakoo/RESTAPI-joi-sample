@@ -35,3 +35,5 @@ route.js에서는 입력 경로와 handler들과 맵핑을 담당한다. 코드�
 
 server 폴더에서 `node .` 명령을 통해 서버를 구동하고 크롬 브라우저에서 *http://localhost:3000/* 주소와 *http://localhost:3000/index.html* 주소로 접근해 본다. routing 설정으로 인해 두 주소 모두 client 폴더의 index.html 파일이 읽힌다. 
 
+
+궁금한 점이나 수정이 필요한 점은 [프로젝트의 issue](https://github.com/dakoo/simple-organized-hapi-server-sample/issues)를 통해 알려주시기 바랍니다. 성심껏 답변드리고 반영하겠습니다.
