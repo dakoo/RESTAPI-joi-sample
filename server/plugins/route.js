@@ -4,12 +4,13 @@ var pages = [
     { method: 'GET', path: '/{filename*}', handler: page.get}];
 
 var user = require('./user');
+var v = require('./userval');
 var apis = [
-    { method: 'POST', path: '/user', handler: user.add },
+    { method: 'POST', path: '/user', handler: user.add, config:{validate:v.body_userinfo}},
     { method: 'GET', path: '/users', handler: user.getlist },
-    { method: 'GET', path: '/user/{email*}', handler: user.get },
-    { method: 'PATCH', path: '/user/{email*}', handler: user.update },
-    { method: 'DELETE', path: '/user/{email*}', handler: user.remove }];
+    { method: 'GET', path: '/user/{email*}', handler: user.get, config:{validate:v.param_email}},
+    { method: 'PATCH', path: '/user/{email*}', handler: user.update, config:{validate:v.param_email}},
+    { method: 'DELETE', path: '/user/{email*}', handler: user.remove, config:{validate:v.param_email}}];
 
 exports.register = function (server, options, next) {
     server.select("web-ui").route(pages);
