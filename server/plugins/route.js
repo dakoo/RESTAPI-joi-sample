@@ -1,15 +1,22 @@
-var handler = require('./handlers');
-var webendpoints = [
-    { method: 'GET', path: '/', config: handler.getentry },
-    { method: 'GET', path: '/{filename*}', config:handler.get}];
-var apiendpoints = [
-    { method: 'GET', path: '/', config: handler.api }];
+var page = require('./page');
+var pages = [
+    { method: 'GET', path: '/', handler: page.front },
+    { method: 'GET', path: '/{filename*}', handler: page.get}];
+
+var user = require('./user');
+var apis = [
+    { method: 'POST', path: '/user', handler: user.add },
+    { method: 'GET', path: '/users', handler: user.getlist },
+    { method: 'GET', path: '/user/{email*}', handler: user.get },
+    { method: 'PATCH', path: '/user/{email*}', handler: user.update },
+    { method: 'DELETE', path: '/user/{email*}', handler: user.remove }];
 
 exports.register = function (server, options, next) {
-    server.select("web-ui").route(webendpoints);
-    server.select("api").route(apiendpoints);
+    server.select("web-ui").route(pages);
+    server.select("api").route(apis);
     next();
 };
+
 exports.register.attributes = {
     name: 'route',
     version: '1.0.0'

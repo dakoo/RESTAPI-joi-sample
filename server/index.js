@@ -6,9 +6,12 @@ for(var i in config){
     server.connection(config[i]);
 }
 
-server.register({
+server.register([{
     register: require('./plugins/route')
-}, function (err) {
+    },{
+    register: require('hapi-mongodb'),
+    options: require('./dbconfig.json')
+    }], function (err) {
     if (err) {
         console.log('Failed loading plugin');
     }

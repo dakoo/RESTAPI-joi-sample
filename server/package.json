@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "hapi": "^8.8.0"
+    "boom": "^2.8.0",
+    "hapi": "^8.8.0",
+    "hapi-mongodb": "^3.0.0"
   }
 }

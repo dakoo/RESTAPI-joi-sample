@@ -1,0 +1,8 @@
+{
+  "url"       : "mongodb://localhost:27017/user-db",
+  "settings"   : {
+    "db"    : {
+      "native_parser" : "false"
+    }
+  }
+}
